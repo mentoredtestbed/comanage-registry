@@ -594,16 +594,10 @@ function main() {
         exit 1
     fi
 
-    # Require getopt version 2.32 or greater.
-    getopt_version=$(/usr/bin/getopt --version | cut -d' ' -f4 | cut -c1-4 | tr -d .)
-    if [[ ! "${getopt_version:-0}" -ge 232 ]]; then
-        err "ERROR: getopt version must be 2.32 or greater"
-        exit 1
-    fi
-
+    
     declare -a docker_build_flags=()
 
-    gnu_getopt_out=$(/usr/bin/getopt \
+    gnu_getopt_out=$(getopt \
                      --options hl:os: \
                      --longoptions help \
                      --longoptions build-arg: \
